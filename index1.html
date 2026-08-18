@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Background image · full size with scroll</title>
+    <style>
+        /* ----- reset ----- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            min-height: 100vh;
+            background: #1a1e24;        /* fallback color */
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        /* 
+            The anchor wraps the image – it grows with the image.
+            No fixed height, so the page scrolls naturally.
+        */
+        .image-link {
+            display: inline-block;      /* shrink‑wrap to image size */
+            line-height: 0;             /* remove extra spacing below image */
+            cursor: pointer;
+            text-decoration: none;
+            background: transparent;
+            /* subtle shadow to make the image pop */
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+            transition: filter 0.2s ease;
+        }
+
+        /* hover feedback */
+        .image-link:hover {
+            filter: brightness(1.04) contrast(1.02);
+        }
+
+        /* 
+            The image keeps its original dimensions.
+            No max-width or max-height restrictions – the image is shown
+            at its natural size. If it's larger than the viewport,
+            the page will scroll.
+        */
+        .image-link img {
+            display: block;
+            width: auto;                /* natural width */
+            height: auto;              /* natural height */
+            /* 
+                IMPORTANT: No max-width / max-height here.
+                The image keeps its exact original pixel dimensions.
+                If the image is 3000px tall, the page will scroll.
+            */
+            background: #2c313a;
+            image-rendering: auto;
+        }
+
+        /* floating hint – stays fixed, click‑through */
+        .hint {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(8, 10, 16, 0.65);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            padding: 0.45rem 1.6rem;
+            border-radius: 60px;
+            color: rgba(255, 255, 255, 0.92);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 0.3px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            pointer-events: none;       /* clicks pass through to the link */
+            user-select: none;
+            white-space: nowrap;
+            z-index: 100;
+            transition: opacity 0.3s;
+        }
+
+        .hint strong {
+            font-weight: 600;
+            color: #ffffff;
+        }
+
+        .hint span {
+            display: inline-block;
+            margin: 0 3px;
+        }
+
+        @media (max-width: 500px) {
+            .hint {
+                font-size: 0.7rem;
+                padding: 0.3rem 1rem;
+                bottom: 1.2rem;
+            }
+        }
+
+        /* subtle animation for the hint */
+        @keyframes softGlow {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+        .hint {
+            animation: softGlow 2.8s infinite alternate ease-in-out;
+        }
+
+        /* dim hint on hover (optional) */
+        .image-link:hover ~ .hint {
+            opacity: 0.25;
+        }
+
+        /* accessibility focus ring */
+        .image-link:focus-visible {
+            outline: 4px solid #ffffffcc;
+            outline-offset: 4px;
+            border-radius: 4px;
+        }
+
+        /* center the image horizontally on the page */
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;  /* image starts at top */
+            padding: 1rem 0;              /* small breathing space */
+        }
+    </style>
+</head>
+<body>
+    <!-- 
+        The image is wrapped in an <a> tag.
+        Clicking anywhere on the image opens google.com in a new tab.
+        The image keeps its original size – if it's taller than the screen,
+        the page scrolls naturally.
+    -->
+    <a 
+        href="index2.html" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="image-link"
+        aria-label="Open Google in new tab – click the image"
+    >
+        <img 
+            src="images/background1.jpg" 
+            alt="Background image – click to open google.com in a new tab"
+            loading="lazy"
+        />
+    </a>
+<!--Start of Tawk.to Script-->
+<script type="text/javascript">
+var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
+(function(){
+var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
+s1.async=true;
+s1.src='https://embed.tawk.to/6a46d2344b956a1d4cbbc207/1jsiaa7g8';
+s1.charset='UTF-8';
+s1.setAttribute('crossorigin','*');
+s0.parentNode.insertBefore(s1,s0);
+})();
+</script>
+<!--End of Tawk.to Script-->
+</body>
+</html>
